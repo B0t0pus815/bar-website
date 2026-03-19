@@ -312,7 +312,31 @@
   }
 
   /* ─── PAIN POINTS ─── */
-  #problems { background: var(--off-white); }
+  #problems { background: var(--off-white); overflow: hidden; }
+
+  .problems-marquee-wrap {
+    overflow: hidden;
+    position: relative;
+    mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+  }
+
+  .problems-marquee-track {
+    display: flex;
+    gap: 1.2rem;
+    width: max-content;
+    animation: marquee-scroll 35s linear infinite;
+    padding: 0.5rem 0 1rem;
+  }
+
+  .problems-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
 
   .problems-grid {
     display: grid;
@@ -321,53 +345,64 @@
   }
 
   .problem-card {
-    background: var(--white);
-    border: 1px solid var(--gray-light);
-    border-radius: var(--radius);
-    padding: 2rem;
-    transition: var(--transition);
     position: relative;
+    border-radius: 16px;
     overflow: hidden;
+    flex-shrink: 0;
+    width: 300px;
+    height: 200px;
+    cursor: default;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
 
-  .problem-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--teal-light), var(--teal));
-    transform: scaleX(0);
-    transition: var(--transition);
-    transform-origin: left;
-  }
-
-  .problem-card:hover { 
-    transform: translateY(-4px);
+  .problem-card:hover {
+    transform: translateY(-6px) scale(1.02);
     box-shadow: var(--shadow-md);
   }
 
-  .problem-card:hover::before { transform: scaleX(1); }
+  .problem-card-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
 
-  .problem-icon {
-    width: 52px; height: 52px;
-    background: var(--teal-pale);
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 1.2rem;
+  .problem-card:hover .problem-card-bg {
+    transform: scale(1.06);
+  }
+
+  .problem-card-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(
+      160deg,
+      rgba(10,28,50,0.45) 0%,
+      rgba(10,28,50,0.78) 60%,
+      rgba(10,28,50,0.92) 100%
+    );
+  }
+
+  .problem-card-content {
+    position: relative; z-index: 2;
+    padding: 1.5rem;
+    height: 100%;
+    display: flex; flex-direction: column; justify-content: flex-end;
   }
 
   .problem-title {
-    font-size: 1rem; font-weight: 500;
-    color: var(--text-dark);
-    margin-bottom: 0.6rem;
+    font-size: 1.05rem; font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
   }
 
   .problem-desc {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    line-height: 1.7;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.82);
+    line-height: 1.6;
   }
+
+  .problem-icon { display: none; }
 
   /* ─── WHY US ─── */
   #why-us {
@@ -1065,36 +1100,11 @@
     .section-subtitle { font-size: 0.88rem; }
     .section-header { margin-bottom: 1.5rem; }
 
-    /* PROBLEMS — accordion on mobile */
-    .problems-grid { grid-template-columns: 1fr; gap: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--gray-light); }
-    .problem-card,
-    .problem-card.fade-up,
-    .problem-card.fade-up.animate,
-    .problem-card.fade-up.animate.visible {
-      border-radius: 0; border: none; border-bottom: 1px solid var(--gray-light); padding: 0;
-      transform: none !important;
-      opacity: 1 !important;
-      transition: none !important;
-    }
-    .problem-card:last-child { border-bottom: none; }
-    .problem-card-header {
-      display: flex; align-items: center; gap: 0.8rem;
-      padding: 1rem 1.1rem; cursor: pointer;
-      user-select: none;
-    }
-    .problem-icon { width: 36px; height: 36px; margin-bottom: 0; font-size: 1.1rem; flex-shrink: 0; border-radius: 8px; }
-    .problem-title { margin-bottom: 0; font-size: 0.95rem; flex: 1; }
-    .problem-chevron {
-      width: 20px; height: 20px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      color: var(--text-light); transition: transform 0.25s ease;
-      font-size: 0.8rem;
-    }
-    .problem-card.open .problem-chevron { transform: rotate(180deg); }
-    .problem-desc { display: none; padding: 0 1.1rem 1rem 3.3rem; font-size: 0.85rem; line-height: 1.6; }
-    .problem-card.open .problem-desc { display: block; }
-    .problem-card::before { display: none; }
-    .problem-card:hover { transform: none; box-shadow: none; }
+    /* PROBLEMS — same marquee on mobile, smaller cards */
+    .problems-marquee-wrap { margin: 0 -1.1rem; }
+    .problem-card { width: 240px; height: 170px; }
+    .problem-title { font-size: 0.92rem; }
+    .problem-desc { font-size: 0.78rem; }
 
     /* SERVICES — horizontal scroll */
     .services-grid {
@@ -1285,54 +1295,106 @@
       <h2 class="section-title">洗滌外包，解決您的難題</h2>
       <p class="section-subtitle">澎湖旺季短暫、住客量集中，布草洗滌壓力格外沉重。清淨企業社了解島上業者的需求，正是為了解決這些困擾而生。</p>
     </div>
-    <div class="problems-grid">
-      <div class="problem-card fade-up">
-        <div class="problem-card-header" onclick="toggleProblem(this)">
-          <div class="problem-icon">⏰</div>
+  </div>
+  <div class="problems-marquee-wrap">
+    <div class="problems-marquee-track">
+      <!-- 第一組 -->
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-1-time.png" alt="旺季時間壓力大">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
           <div class="problem-title">旺季時間壓力大</div>
-          <div class="problem-chevron">▼</div>
+          <p class="problem-desc">住宿幾乎天天爆滿，自行洗滌根本來不及，嚴重影響翻房效率。</p>
         </div>
-        <p class="problem-desc">澎湖旅遊旺季集中於夏季，住宿幾乎天天爆滿，自行洗滌根本來不及，嚴重影響翻房效率。</p>
       </div>
-      <div class="problem-card fade-up">
-        <div class="problem-card-header" onclick="toggleProblem(this)">
-          <div class="problem-icon">🏠</div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-2-space.png" alt="設備空間不足">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
           <div class="problem-title">設備空間不足</div>
-          <div class="problem-chevron">▼</div>
+          <p class="problem-desc">洗衣烘乾設備難以大量配置，旺季需求遠超設備負荷。</p>
         </div>
-        <p class="problem-desc">島上土地有限、民宿格局緊湊，洗衣烘乾設備難以大量配置，旺季需求遠超設備負荷。</p>
       </div>
-      <div class="problem-card fade-up">
-        <div class="problem-card-header" onclick="toggleProblem(this)">
-          <div class="problem-icon">🌊</div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-3-island.png" alt="海島環境加速損耗">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
           <div class="problem-title">海島環境加速損耗</div>
-          <div class="problem-chevron">▼</div>
+          <p class="problem-desc">澎湖鹽分高、日曬強，布草容易泛黃硬化，難以維持品質。</p>
         </div>
-        <p class="problem-desc">澎湖鹽分高、日曬強，布草容易泛黃、硬化、損耗加速，自行洗滌更難以維持品質。</p>
       </div>
-      <div class="problem-card fade-up">
-        <div class="problem-card-header" onclick="toggleProblem(this)">
-          <div class="problem-icon">💰</div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-5-cost.png" alt="成本難以控制">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
           <div class="problem-title">成本難以控制</div>
-          <div class="problem-chevron">▼</div>
+          <p class="problem-desc">外島物價偏高，水電、人事、耗材費難以固定化管理。</p>
         </div>
-        <p class="problem-desc">水電費、人事費、耗材費難以精準計算，外島物價偏高，洗滌成本更難固定化管理。</p>
       </div>
-      <div class="problem-card fade-up">
-        <div class="problem-card-header" onclick="toggleProblem(this)">
-          <div class="problem-icon">🦠</div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-4-hygiene.png" alt="衛生標準難把關">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
           <div class="problem-title">衛生標準難把關</div>
-          <div class="problem-chevron">▼</div>
+          <p class="problem-desc">一般洗滌難達標準，一旦收到差評，對口碑影響極大。</p>
         </div>
-        <p class="problem-desc">旅客對住宿衛生日益重視，一般洗滌難達標準，一旦收到差評，對口碑影響極大。</p>
       </div>
-      <div class="problem-card fade-up">
-        <div class="problem-card-header" onclick="toggleProblem(this)">
-          <div class="problem-icon">📦</div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-6-stock.png" alt="淡旺季庫存難管理">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
           <div class="problem-title">淡旺季庫存難管理</div>
-          <div class="problem-chevron">▼</div>
+          <p class="problem-desc">旺季備品不足、淡季積壓庫存，庫存管理成本兩頭燒。</p>
         </div>
-        <p class="problem-desc">澎湖淡旺季落差極大，旺季備品不足、淡季積壓庫存，庫存管理成本兩頭燒。</p>
+      </div>
+      <!-- 第二組（無縫循環） -->
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-1-time.png" alt="旺季時間壓力大">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
+          <div class="problem-title">旺季時間壓力大</div>
+          <p class="problem-desc">住宿幾乎天天爆滿，自行洗滌根本來不及，嚴重影響翻房效率。</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-2-space.png" alt="設備空間不足">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
+          <div class="problem-title">設備空間不足</div>
+          <p class="problem-desc">洗衣烘乾設備難以大量配置，旺季需求遠超設備負荷。</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-3-island.png" alt="海島環境加速損耗">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
+          <div class="problem-title">海島環境加速損耗</div>
+          <p class="problem-desc">澎湖鹽分高、日曬強，布草容易泛黃硬化，難以維持品質。</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-5-cost.png" alt="成本難以控制">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
+          <div class="problem-title">成本難以控制</div>
+          <p class="problem-desc">外島物價偏高，水電、人事、耗材費難以固定化管理。</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-4-hygiene.png" alt="衛生標準難把關">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
+          <div class="problem-title">衛生標準難把關</div>
+          <p class="problem-desc">一般洗滌難達標準，一旦收到差評，對口碑影響極大。</p>
+        </div>
+      </div>
+      <div class="problem-card">
+        <img class="problem-card-bg" src="prob-6-stock.png" alt="淡旺季庫存難管理">
+        <div class="problem-card-overlay"></div>
+        <div class="problem-card-content">
+          <div class="problem-title">淡旺季庫存難管理</div>
+          <p class="problem-desc">旺季備品不足、淡季積壓庫存，庫存管理成本兩頭燒。</p>
+        </div>
       </div>
     </div>
   </div>
