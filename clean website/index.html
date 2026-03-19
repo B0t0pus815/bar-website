@@ -1067,7 +1067,15 @@
 
     /* PROBLEMS — accordion on mobile */
     .problems-grid { grid-template-columns: 1fr; gap: 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--gray-light); }
-    .problem-card { border-radius: 0; border: none; border-bottom: 1px solid var(--gray-light); padding: 0; }
+    .problem-card,
+    .problem-card.fade-up,
+    .problem-card.fade-up.animate,
+    .problem-card.fade-up.animate.visible {
+      border-radius: 0; border: none; border-bottom: 1px solid var(--gray-light); padding: 0;
+      transform: none !important;
+      opacity: 1 !important;
+      transition: none !important;
+    }
     .problem-card:last-child { border-bottom: none; }
     .problem-card-header {
       display: flex; align-items: center; gap: 0.8rem;
