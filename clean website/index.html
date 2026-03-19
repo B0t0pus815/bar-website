@@ -699,6 +699,7 @@
   }
 
   /* ─── CERTIFICATES ─── */
+  #certificates { overflow: hidden; }
   .cert-badge {
     display: flex; gap: 1rem; align-items: flex-start;
     background: var(--off-white);
@@ -732,6 +733,15 @@
   }
   .cert-report-wrap {
     position: relative;
+    min-width: 0;
+  }
+  .cert-report-wrap img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 16px 16px 0 0;
+    box-shadow: var(--shadow-md);
+    display: block;
   }
   .cert-report-label {
     display: flex; justify-content: space-between; align-items: center;
@@ -740,7 +750,6 @@
     padding: 0.8rem 1.2rem;
     border-radius: 0 0 16px 16px;
     font-size: 0.85rem;
-    margin-top: -6px;
   }
 
   /* ─── EQUIPMENT ─── */
@@ -1121,7 +1130,11 @@
 
     /* CERTIFICATES */
     #certificates .container > div:nth-child(2) { grid-template-columns: 1fr; gap: 1.5rem; }
-    .cert-badge-logo { width: 44px; height: 44px; font-size: 0.9rem; }
+    .cert-badge { padding: 1rem; gap: 0.8rem; }
+    .cert-badge-logo { width: 40px; height: 40px; font-size: 0.8rem; flex-shrink: 0; }
+    .cert-badge-title { font-size: 0.88rem; }
+    .cert-badge-desc { font-size: 0.8rem; }
+    .cert-report-label { flex-direction: column; gap: 0.3rem; align-items: flex-start; font-size: 0.8rem; padding: 0.7rem 1rem; }
 
     /* EQUIPMENT — stack on mobile */
     .equip-row { grid-template-columns: 1fr; gap: 1.2rem; padding: 2rem 0; direction: ltr; }
@@ -1580,10 +1593,10 @@
       </div>
 
       <div class="cert-report-wrap fade-up">
-        <img src="cert-reports.png" alt="洗劑檢驗報告書 SGS Intertek" style="width:100%; border-radius: 16px; box-shadow: var(--shadow-md); display: block;">
+        <img src="cert-reports.png" alt="洗劑檢驗報告書 SGS Intertek">
         <div class="cert-report-label">
           <span>📋 洗劑檢驗報告書</span>
-          <span style="color: var(--teal); font-weight: 500;">SGS + Intertek 雙重認證</span>
+          <span style="color: var(--teal-light); font-weight: 500;">SGS + Intertek 雙重認證</span>
         </div>
       </div>
     </div>
