@@ -107,8 +107,12 @@
   .hamburger span {
     display: block; width: 24px; height: 2px;
     background: var(--white); border-radius: 2px;
-    transition: var(--transition);
+    transition: transform 0.3s ease, opacity 0.3s ease;
   }
+
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
   /* ─── HERO ─── */
   #hero {
@@ -1057,6 +1061,11 @@
       z-index: 999;
       max-height: calc(100vh - 70px);
       overflow-y: auto;
+      animation: slideDown 0.3s ease forwards;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
     .nav-links.open a { padding: 0.7rem 1rem; font-size: 1rem; }
     .nav-cta { text-align: center; margin-top: 0.5rem; }
@@ -1548,7 +1557,7 @@
       </div>
       <div class="equip-photos">
         <img src="fold-1.png" alt="浴巾摺疊機">
-        <img src="fold-2.png" alt="TB-60K 摺疊機">
+        <img src="fold-2.png" alt="摺疊機">
       </div>
     </div>
 
@@ -1794,12 +1803,16 @@
   }
 
   function toggleNav() {
-    document.getElementById('navLinks').classList.toggle('open');
+    const nav = document.getElementById('navLinks');
+    const burger = document.querySelector('.hamburger');
+    nav.classList.toggle('open');
+    burger.classList.toggle('open');
   }
 
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', () => {
       document.getElementById('navLinks').classList.remove('open');
+      document.querySelector('.hamburger').classList.remove('open');
     });
   });
 
