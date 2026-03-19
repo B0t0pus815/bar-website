@@ -744,41 +744,54 @@
   }
 
   /* ─── EQUIPMENT ─── */
-  .equip-card {
-    background: var(--white);
-    border-radius: 16px;
-    overflow: hidden;
-    border: 1px solid var(--gray-light);
-    transition: var(--transition);
+  .equip-row {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr;
+    gap: 3rem;
+    align-items: center;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--gray-light);
   }
+  .equip-row:last-child { border-bottom: none; }
+  .equip-row-reverse { direction: rtl; }
+  .equip-row-reverse > * { direction: ltr; }
 
-  .equip-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--teal-light);
+  .equip-tag {
+    display: inline-block;
+    background: var(--teal-pale);
+    color: var(--teal);
+    font-size: 0.82rem; font-weight: 500;
+    padding: 4px 12px; border-radius: 20px;
+    margin-bottom: 0.8rem;
   }
-
-  .equip-img {
-    height: 200px;
-    overflow: hidden;
-    position: relative;
-  }
-
-  .equip-img img { transition: transform 0.5s ease; }
-  .equip-card:hover .equip-img img { transform: scale(1.05); }
-
-  .equip-body { padding: 1.4rem; }
-
-  .equip-label {
-    font-size: 1rem; font-weight: 500;
+  .equip-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 1.3rem; font-weight: 700;
     color: var(--navy);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    line-height: 1.4;
   }
-
-  .equip-desc {
-    font-size: 0.87rem;
+  .equip-body-text {
+    font-size: 0.92rem;
     color: var(--text-light);
-    line-height: 1.7;
+    line-height: 1.8;
+  }
+  .equip-photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+  }
+  .equip-photos img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    border-radius: 12px;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+  .equip-photos img:hover { transform: scale(1.03); }
+  .equip-photos img:first-child {
+    grid-row: span 1;
   }
 
   /* ─── LINE QR ─── */
@@ -1110,18 +1123,12 @@
     #certificates .container > div:nth-child(2) { grid-template-columns: 1fr; gap: 1.5rem; }
     .cert-badge-logo { width: 44px; height: 44px; font-size: 0.9rem; }
 
-    /* EQUIPMENT — horizontal scroll */
-    #equipment .container > div:last-child {
-      display: flex; gap: 1rem;
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      padding-bottom: 1rem;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-    }
-    #equipment .container > div:last-child::-webkit-scrollbar { display: none; }
-    .equip-card { min-width: 80vw; flex-shrink: 0; scroll-snap-align: start; }
-    .equip-img { height: 160px; }
-    .equip-body { padding: 1rem; }
+    /* EQUIPMENT — stack on mobile */
+    .equip-row { grid-template-columns: 1fr; gap: 1.2rem; padding: 2rem 0; direction: ltr; }
+    .equip-row-reverse { direction: ltr; }
+    .equip-photos { gap: 0.6rem; }
+    .equip-title { font-size: 1.1rem; }
+    .equip-body-text { font-size: 0.87rem; }
 
     /* PROCESS — compact 2-col */
     .process-steps { grid-template-columns: 1fr 1fr; gap: 1rem; }
@@ -1486,49 +1493,55 @@
       <h2 class="section-title">業界頂級設備，品質一目了然</h2>
       <p class="section-subtitle">我們持續投資引進商業級洗滌設備，從清洗、烘乾、熨燙到摺疊，每一道工序都有專業機具把關，確保每批布草品質穩定一致。</p>
     </div>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
 
-      <div class="equip-card fade-up">
-        <div class="equip-img">
-          <img src="equip-truck.png" alt="專車運送" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;">
-        </div>
-        <div class="equip-body">
-          <div class="equip-label">🚛 專車運送</div>
-          <p class="equip-desc">自有專用貨車每日運送，省時方便快速，讓澎湖各地業者都能輕鬆配合。</p>
-        </div>
+    <div class="equip-row fade-up">
+      <div class="equip-text">
+        <div class="equip-tag">🚛 專車運送</div>
+        <h3 class="equip-title">專用貨車每日運送</h3>
+        <p class="equip-body-text">省時方便快速，澎湖在地服務，確保每批布草準時取送，讓您的住宿事業零等待。</p>
       </div>
-
-      <div class="equip-card fade-up">
-        <div class="equip-img">
-          <img src="equip-wash.png" alt="清洗設備" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
-        </div>
-        <div class="equip-body">
-          <div class="equip-label">🫧 商業級清洗設備</div>
-          <p class="equip-desc">使用蒸氣洗烘取代柔軟精，維持布品柔軟度，同時有效高溫殺菌消毒。</p>
-        </div>
+      <div class="equip-photos">
+        <img src="truck-1.png" alt="大順洗衣店專車">
+        <img src="truck-2.png" alt="專車車隊">
       </div>
-
-      <div class="equip-card fade-up">
-        <div class="equip-img">
-          <img src="equip-iron.png" alt="熨燙設備" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
-        </div>
-        <div class="equip-body">
-          <div class="equip-label">♨️ 大型熨燙設備</div>
-          <p class="equip-desc">使用專用機器可減少鬆緊帶被燙損壞問題，床單平整無皺，呈現五星質感。</p>
-        </div>
-      </div>
-
-      <div class="equip-card fade-up">
-        <div class="equip-img">
-          <img src="equip-fold.png" alt="浴巾摺疊機" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
-        </div>
-        <div class="equip-body">
-          <div class="equip-label">📐 法式浴巾摺疊機</div>
-          <p class="equip-desc">法式折疊用鋁刀和吹氣可以讓毛巾摺疊更漂亮，呈現五星級飯店的整潔質感。</p>
-        </div>
-      </div>
-
     </div>
+
+    <div class="equip-row equip-row-reverse fade-up">
+      <div class="equip-text">
+        <div class="equip-tag">🫧 清洗設備</div>
+        <h3 class="equip-title">使用蒸氣洗烘取代柔軟精</h3>
+        <p class="equip-body-text">維持布品柔軟度，引進 Yamamoto WN502 及 ASAHI Eco-mighty 系列商業洗衣烘乾設備，高溫殺菌，品質穩定一致。</p>
+      </div>
+      <div class="equip-photos">
+        <img src="wash-1.png" alt="Yamamoto 洗衣設備">
+        <img src="wash-2.png" alt="ASAHI 烘乾設備">
+      </div>
+    </div>
+
+    <div class="equip-row fade-up">
+      <div class="equip-text">
+        <div class="equip-tag">♨️ 熨燙設備</div>
+        <h3 class="equip-title">使用專用機器減少布品損耗</h3>
+        <p class="equip-body-text">ASAHI 大型滾筒熨燙機可有效減少鬆緊帶被燙損壞問題，床單被套平整無皺，呈現五星級飯店的整潔質感。</p>
+      </div>
+      <div class="equip-photos">
+        <img src="iron-1.png" alt="ASAHI 熨燙設備">
+        <img src="iron-2.png" alt="SMF 熨燙機">
+      </div>
+    </div>
+
+    <div class="equip-row equip-row-reverse fade-up">
+      <div class="equip-text">
+        <div class="equip-tag">📐 浴巾摺疊機</div>
+        <h3 class="equip-title">法式折疊讓毛巾更漂亮</h3>
+        <p class="equip-body-text">TB-60K 法式浴巾摺疊機，利用鋁刀和吹氣技術讓毛巾摺疊更蓬亮整齊，展現頂級飯店的專業備品水準。</p>
+      </div>
+      <div class="equip-photos">
+        <img src="fold-1.png" alt="浴巾摺疊機">
+        <img src="fold-2.png" alt="TB-60K 摺疊機">
+      </div>
+    </div>
+
   </div>
 </section>
 
