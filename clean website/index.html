@@ -700,6 +700,13 @@
 
   /* ─── CERTIFICATES ─── */
   #certificates { overflow: hidden; }
+  .cert-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .cert-badges { display: flex; flex-direction: column; gap: 1.2rem; }
   .cert-badge {
     display: flex; gap: 1rem; align-items: flex-start;
     background: var(--off-white);
@@ -1129,7 +1136,7 @@
     .about-list li { font-size: 0.86rem; }
 
     /* CERTIFICATES */
-    #certificates .container > div:nth-child(2) { grid-template-columns: 1fr; gap: 1.5rem; }
+    .cert-grid { grid-template-columns: 1fr !important; gap: 1.5rem; }
     .cert-badge { padding: 1rem; gap: 0.8rem; }
     .cert-badge-logo { width: 40px; height: 40px; font-size: 0.8rem; flex-shrink: 0; }
     .cert-badge-title { font-size: 0.88rem; }
@@ -1192,7 +1199,6 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#problems">您的困擾</a></li>
-      <li><a href="#why-us">為何選擇我們</a></li>
       <li><a href="#services">服務項目</a></li>
       <li><a href="#advantages">我們的優勢</a></li>
       <li><a href="#about">關於我們</a></li>
@@ -1311,60 +1317,6 @@
           <div class="problem-chevron">▼</div>
         </div>
         <p class="problem-desc">澎湖淡旺季落差極大，旺季備品不足、淡季積壓庫存，庫存管理成本兩頭燒。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- WHY US -->
-<section id="why-us">
-  <div class="container">
-    <div class="why-grid">
-      <div class="why-image-wrap">
-        <div class="why-image-main">
-          <img src="https://qing-jing.tw/wp-content/uploads/2023/06/img03.jpg" alt="清淨企業社專業洗滌設備" loading="lazy">
-        </div>
-        <div class="why-badge-float">
-          <strong>專業認證</strong>
-          <span>高溫殺菌洗滌</span>
-        </div>
-      </div>
-      <div>
-        <span class="section-tag">為何選擇我們</span>
-        <h2 class="section-title">深耕澎湖<br>最了解島上業者的夥伴</h2>
-        <p class="section-subtitle" style="margin-bottom: 2rem;">
-          清淨企業社紮根澎湖，深刻了解海島旅宿業的特殊需求：旺季短、壓力大、物資調度不易。我們提供最在地、最即時的布草洗滌解決方案。
-        </p>
-        <div class="why-features">
-          <div class="why-feature">
-            <div class="why-feature-icon">🌡️</div>
-            <div>
-              <h4>高溫殺菌，安心衛生</h4>
-              <p>採用專業級高溫洗滌設備，有效殺滅細菌、塵蹣，達到飯店級衛生標準，讓旅客安心入住。</p>
-            </div>
-          </div>
-          <div class="why-feature">
-            <div class="why-feature-icon">🚚</div>
-            <div>
-              <h4>島內快速取送</h4>
-              <p>澎湖在地服務，依您的排房需求彈性安排取送，確保乾淨備品隨時到位，旺季也不卡關。</p>
-            </div>
-          </div>
-          <div class="why-feature">
-            <div class="why-feature-icon">🌊</div>
-            <div>
-              <h4>對抗海島氣候損耗</h4>
-              <p>針對澎湖高鹽分、強日曬環境，選用適合的洗劑與程序，有效延長布草使用壽命。</p>
-            </div>
-          </div>
-          <div class="why-feature">
-            <div class="why-feature-icon">📊</div>
-            <div>
-              <h4>數量清點，透明管理</h4>
-              <p>每批布草確實清點數量，交件時附上清單，讓您的庫存管理更輕鬆、更透明。</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1567,8 +1519,8 @@
       <p class="section-subtitle">我們使用的洗劑通過 SGS 及 Intertek 國際第三方檢驗機構檢測，砷、鉛、壬基苯酚等有害物質全數未檢出，安全有保障，讓您的旅客住得安心。</p>
     </div>
 
-    <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: center;">
-      <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+    <div class="cert-grid">
+      <div class="cert-badges">
         <div class="cert-badge">
           <div class="cert-badge-logo">SGS</div>
           <div>
