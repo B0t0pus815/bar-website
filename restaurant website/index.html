@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BACiTALi 小義大利｜台中南屯歐風莊園義式餐廳</title>
+<meta name="description" content="台中最美義式莊園餐廳。每日自製PASTA FRESCA新鮮手工麵、義大利進口食材、歐風庭院與浪漫包廂。4.7顆星、5,288則評論。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Noto+Serif+TC:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ivory:   #FAF6EE;
+    --linen:   #F2EBD9;
+    --gold:    #B8933A;
+    --gold-lt: #D4AA55;
+    --verde:   #2A4A35;
+    --rust:    #C0533A;
+    --pink:    #E8C2C2;
+    --ink:     #1C1410;
+    --muted:   #7A6A58;
+    --border:  rgba(184,147,58,0.22);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:var(--ivory); color:var(--ink); overflow-x:hidden; }
+
+  /* NAV */
+  nav {
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    height:72px; padding:0 48px;
+    display:flex; align-items:center; justify-content:space-between;
+    background:rgba(28,20,16,0.95); backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border);
+    transition:background 0.3s;
+  }
+  .nav-logo-main { font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:600; color:var(--gold-lt); letter-spacing:0.06em; }
+  .nav-logo-sub  { font-size:0.62rem; letter-spacing:0.28em; color:rgba(255,255,255,0.3); text-transform:uppercase; margin-top:1px; }
+  .nav-links { display:flex; gap:32px; list-style:none; }
+  .nav-links a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:0.8rem; letter-spacing:0.1em; text-transform:uppercase; transition:color 0.3s; }
+  .nav-links a:hover { color:var(--gold-lt); }
+  .nav-right { display:flex; align-items:center; gap:20px; }
+  .lang-bar { display:flex; gap:6px; font-size:0.7rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; }
+  .lang-bar span { cursor:pointer; transition:color 0.3s; padding:2px 4px; }
+  .lang-bar span.active { color:var(--gold-lt); }
+  .btn-reserve { background:var(--gold); color:var(--ink); padding:10px 22px; font-size:0.76rem; letter-spacing:0.1em; text-transform:uppercase; font-weight:500; text-decoration:none; display:inline-block; transition:background 0.3s; }
+  .btn-reserve:hover { background:var(--gold-lt); }
+
+  /* HERO */
+  .hero { height:100vh; position:relative; display:flex; align-items:flex-end; overflow:hidden; }
+  .hero-bg {
+    position:absolute; inset:0;
+    background:
+      linear-gradient(to bottom, rgba(28,20,16,0.25) 0%, rgba(28,20,16,0.05) 35%, rgba(28,20,16,0.7) 75%, rgba(28,20,16,0.96) 100%),
+      url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&auto=format&fit=crop') center/cover no-repeat;
+  }
+  .hero-float {
+    position:absolute; top:110px; right:6vw; z-index:2;
+    background:rgba(184,147,58,0.12); border:1px solid var(--border);
+    backdrop-filter:blur(12px); padding:24px 28px; text-align:center;
+    animation:fadeUp 1s 0.6s both;
+  }
+  .hero-float-num { font-family:'Cormorant Garamond',serif; font-size:3rem; font-weight:600; color:var(--gold-lt); line-height:1; }
+  .hero-float-label { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:6px; }
+  .hero-float-sub { font-size:0.72rem; color:rgba(255,255,255,0.3); margin-top:4px; }
+  .hero-year-badge {
+    position:absolute; bottom:200px; right:6vw; z-index:2;
+    background:var(--verde); color:var(--ivory);
+    padding:14px 20px; text-align:center;
+    animation:fadeUp 1s 0.9s both;
+  }
+  .hero-year-num { font-family:'Cormorant Garamond',serif; font-size:1.8rem; font-weight:600; color:var(--gold-lt); }
+  .hero-year-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.6; margin-top:2px; }
+  .hero-content { position:relative; z-index:2; padding:0 8vw 80px; width:100%; max-width:700px; animation:fadeUp 1s ease both; }
+  .hero-eyebrow { display:inline-flex; align-items:center; gap:10px; color:var(--gold-lt); font-size:0.7rem; letter-spacing:0.22em; text-transform:uppercase; margin-bottom:18px; }
+  .hero-eyebrow::before, .hero-eyebrow::after { content:''; display:block; width:28px; height:1px; background:var(--gold); }
+  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(3.5rem,8vw,6.5rem); color:var(--ivory); line-height:1; font-weight:300; margin-bottom:6px; }
+  .hero-title em { font-style:italic; color:var(--gold-lt); }
+  .hero-tagline { font-family:'Noto Serif TC',serif; font-size:clamp(0.9rem,1.6vw,1.15rem); color:rgba(250,246,238,0.55); font-weight:300; letter-spacing:0.12em; margin-bottom:40px; }
+  .hero-pills { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:36px; }
+  .pill { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); color:rgba(255,255,255,0.6); font-size:0.72rem; padding:5px 12px; letter-spacing:0.08em; }
+  .pill.gold { border-color:rgba(184,147,58,0.4); color:var(--gold-lt); background:rgba(184,147,58,0.1); }
+  .hero-cta { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-gold { background:var(--gold); color:var(--ink); padding:14px 32px; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; font-weight:500; border:none; cursor:pointer; text-decoration:none; display:inline-block; transition:background 0.3s; }
+  .btn-gold:hover { background:var(--gold-lt); }
+  .btn-ghost { background:transparent; color:var(--ivory); padding:13px 32px; font-size:0.78rem; letter-spacing:0.12em; text-transform:uppercase; border:1px solid rgba(255,255,255,0.3); text-decoration:none; display:inline-block; transition:all 0.3s; }
+  .btn-ghost:hover { border-color:var(--gold-lt); color:var(--gold-lt); }
+
+  /* STORY STRIP */
+  .story-strip { background:var(--ink); padding:48px 8vw; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; }
+  .strip-item { padding:32px 24px; border-right:1px solid rgba(255,255,255,0.06); text-align:center; }
+  .strip-item:last-child { border-right:none; }
+  .strip-num { font-family:'Cormorant Garamond',serif; font-size:2.6rem; font-weight:600; color:var(--gold-lt); line-height:1; }
+  .strip-label { font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:rgba(255,255,255,0.35); margin-top:6px; }
+
+  /* SECTION BASE */
+  section.pad { padding:100px 8vw; }
+  .sec-label { display:inline-flex; align-items:center; gap:10px; font-size:0.68rem; letter-spacing:0.24em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .sec-label::before { content:''; display:block; width:22px; height:1px; background:var(--gold); }
+  .sec-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,3.2rem); font-weight:300; line-height:1.2; margin-bottom:20px; }
+  .sec-title em { font-style:italic; color:var(--rust); }
+  .sec-title.light { color:var(--ivory); }
+  .sec-title.light em { color:var(--gold); }
+
+  /* ABOUT */
+  .about-wrap { background:var(--linen); display:grid; grid-template-columns:5fr 7fr; gap:0; align-items:stretch; }
+  .about-img-stack { position:relative; overflow:hidden; min-height:600px; }
+  .about-img-main { width:100%; height:100%; object-fit:cover; display:block; position:absolute; inset:0; }
+  .about-img-accent { position:absolute; bottom:28px; right:28px; width:48%; aspect-ratio:4/3; object-fit:cover; border:5px solid var(--linen); box-shadow:0 8px 32px rgba(0,0,0,0.25); }
+  .about-badge { position:absolute; top:0; right:0; background:rgba(28,20,16,0.88); backdrop-filter:blur(8px); color:var(--ivory); padding:20px 24px; text-align:center; }
+  .about-badge-main { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:600; color:var(--gold-lt); line-height:1.2; }
+  .about-badge-sub { font-size:0.58rem; letter-spacing:0.2em; text-transform:uppercase; opacity:0.5; margin-top:5px; }
+  .about-text-col { padding:64px 56px; display:flex; flex-direction:column; justify-content:center; }
+  .about-body p { font-family:'Noto Serif TC',serif; font-size:0.93rem; line-height:1.95; color:var(--muted); font-weight:300; margin-bottom:14px; }
+  .pasta-callout { border-left:3px solid var(--gold); padding:16px 22px; margin:28px 0; background:rgba(184,147,58,0.07); }
+  .pasta-callout strong { display:block; font-family:'Cormorant Garamond',serif; font-size:1.05rem; color:var(--ink); margin-bottom:5px; letter-spacing:0.02em; }
+  .pasta-callout p { font-size:0.8rem; line-height:1.75; color:var(--muted); margin:0; font-family:'DM Sans',sans-serif; }
+  .features-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:28px; border-top:1px solid var(--border); }
+  .feat { padding:18px 0; border-bottom:1px solid var(--border); border-right:1px solid var(--border); padding-right:20px; padding-left:0; }
+  .feat:nth-child(even) { padding-right:0; padding-left:20px; border-right:none; }
+  .feat-num { font-family:'Cormorant Garamond',serif; font-size:0.75rem; color:var(--gold); letter-spacing:0.15em; margin-bottom:6px; font-style:italic; }
+  .feat-text strong { display:block; font-size:0.82rem; font-weight:500; margin-bottom:3px; letter-spacing:0.02em; }
+  .feat-text span { font-size:0.73rem; color:var(--muted); line-height:1.5; display:block; }
+
+  /* MENU */
+  .menu-wrap { background:var(--ink); }
+  .menu-header { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:56px; }
+  .menu-intro { font-family:'Noto Serif TC',serif; font-size:0.9rem; line-height:1.9; color:rgba(250,246,238,0.5); font-weight:300; max-width:460px; }
+  .menu-tabs { display:flex; gap:2px; }
+  .mtab { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); color:rgba(255,255,255,0.4); font-size:0.72rem; padding:8px 18px; letter-spacing:0.1em; cursor:pointer; transition:all 0.3s; }
+  .mtab.active, .mtab:hover { background:var(--gold); color:var(--ink); border-color:var(--gold); }
+  .menu-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+  .mcard { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); padding:32px 28px; transition:all 0.3s; position:relative; overflow:hidden; }
+  .mcard::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg, rgba(184,147,58,0.06), transparent); opacity:0; transition:opacity 0.3s; }
+  .mcard:hover { border-color:rgba(184,147,58,0.3); }
+  .mcard:hover::before { opacity:1; }
+  .mcard-cat { font-size:0.62rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+  .mcard-it { font-family:'Cormorant Garamond',serif; font-size:1.35rem; color:var(--ivory); margin-bottom:4px; line-height:1.3; font-style:italic; }
+  .mcard-zh { font-family:'Noto Serif TC',serif; font-size:0.82rem; color:rgba(250,246,238,0.4); margin-bottom:14px; font-weight:300; }
+  .mcard-desc { font-size:0.8rem; line-height:1.7; color:rgba(250,246,238,0.42); margin-bottom:20px; }
+  .mcard-price { font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold-lt); }
+  .mcard-price small { font-family:'DM Sans',sans-serif; font-size:0.7rem; color:rgba(250,246,238,0.25); margin-left:4px; }
+  .mcard-tag { position:absolute; top:14px; right:14px; background:var(--rust); color:#fff; font-size:0.58rem; padding:3px 8px; letter-spacing:0.1em; text-transform:uppercase; }
+  .menu-note { margin-top:48px; text-align:center; }
+  .menu-note p { font-family:'Noto Serif TC',serif; font-size:0.82rem; color:rgba(255,255,255,0.3); letter-spacing:0.1em; margin-bottom:20px; }
+
+  /* AMBIENCE */
+  .amb-wrap { background:var(--linen); padding:100px 0; }
+  .amb-hdr { padding:0 8vw; margin-bottom:52px; }
+  .amb-grid { padding:0 8vw; display:grid; grid-template-columns:repeat(12,1fr); grid-template-rows:260px 200px; gap:6px; }
+  .aimg { overflow:hidden; }
+  .aimg img { width:100%; height:100%; object-fit:cover; transition:transform 0.7s ease; display:block; background:#2A3A2A; }
+  img { background:linear-gradient(135deg,#2a3528,#1c1c14); }
+  .aimg:hover img { transform:scale(1.07); }
+  .aimg.a1 { grid-column:1/6; grid-row:1/3; }
+  .aimg.a2 { grid-column:6/9; grid-row:1/2; }
+  .aimg.a3 { grid-column:9/13; grid-row:1/2; }
+  .aimg.a4 { grid-column:6/10; grid-row:2/3; }
+  .aimg.a5 { grid-column:10/13; grid-row:2/3; }
+  .amb-quote-block { grid-column:6/13; }
+  .pull-quote { background:var(--verde); padding:36px 40px; height:100%; display:flex; flex-direction:column; justify-content:center; }
+  .pull-quote blockquote { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-style:italic; color:var(--ivory); line-height:1.65; margin-bottom:18px; font-weight:300; }
+  .pull-quote cite { font-size:0.65rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-lt); font-style:normal; }
+
+  /* SPACE FEATURES */
+  .spaces { background:var(--ivory); display:grid; grid-template-columns:repeat(3,1fr); gap:1px; }
+  .space-card { padding:48px 36px; border:1px solid rgba(184,147,58,0.12); transition:border-color 0.3s; }
+  .space-card:hover { border-color:rgba(184,147,58,0.3); background:var(--linen); }
+  .space-num { font-family:'Cormorant Garamond',serif; font-size:3.5rem; font-weight:300; color:rgba(184,147,58,0.2); line-height:1; margin-bottom:16px; }
+  .space-name { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:400; margin-bottom:8px; }
+  .space-desc { font-size:0.82rem; line-height:1.75; color:var(--muted); }
+
+  /* INFO */
+  .info-wrap { background:var(--ink); display:grid; grid-template-columns:1fr 1fr; }
+  .info-col { padding:80px 8vw; }
+  .info-col + .info-col { border-left:1px solid rgba(255,255,255,0.05); }
+  .info-list { margin-top:36px; display:flex; flex-direction:column; gap:0; }
+  .irow { display:flex; gap:16px; padding:20px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+  .irow:last-child { border-bottom:none; }
+  .iicon { width:38px; height:38px; flex-shrink:0; border:1px solid var(--border); display:flex; align-items:center; justify-content:center; font-size:0.95rem; }
+  .idetail strong { display:block; font-size:0.7rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--gold-lt); margin-bottom:5px; }
+  .idetail p { font-size:0.88rem; color:rgba(250,246,238,0.6); line-height:1.65; }
+  .idetail a { color:var(--gold-lt); text-decoration:none; }
+  .map-box { margin-top:32px; background:rgba(255,255,255,0.03); border:1px solid var(--border); padding:40px; text-align:center; cursor:pointer; transition:background 0.3s; }
+  .map-box:hover { background:rgba(184,147,58,0.07); }
+  .map-box .map-emoji { font-size:2.5rem; margin-bottom:12px; }
+  .map-box p { font-size:0.82rem; color:rgba(255,255,255,0.35); letter-spacing:0.08em; }
+  .badge-row { display:flex; flex-wrap:wrap; gap:10px; margin-top:28px; }
+  .abadge { border:1px solid rgba(255,255,255,0.1); background:rgba(255,255,255,0.04); color:rgba(255,255,255,0.5); font-size:0.7rem; padding:5px 12px; letter-spacing:0.06em; }
+  .abadge.g { border-color:rgba(42,74,53,0.6); color:#7FBFA0; background:rgba(42,74,53,0.15); }
+  .birthday-card { background:linear-gradient(135deg, rgba(184,147,58,0.12), rgba(184,147,58,0.05)); border:1px solid var(--border); padding:28px; margin-top:28px; }
+  .birthday-card h4 { font-family:'Cormorant Garamond',serif; font-size:1.2rem; color:var(--gold-lt); margin-bottom:8px; }
+  .birthday-card p { font-size:0.82rem; color:rgba(250,246,238,0.55); line-height:1.7; }
+
+  /* REVIEWS */
+  .reviews-wrap { background:var(--linen); padding:80px 8vw; }
+  .reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:48px; }
+  .rcard { background:var(--ivory); padding:28px; border:1px solid rgba(184,147,58,0.1); }
+  .rcard-stars { color:#D4AA55; font-size:0.85rem; margin-bottom:12px; letter-spacing:2px; }
+  .rcard-text { font-family:'Noto Serif TC',serif; font-size:0.87rem; line-height:1.85; color:var(--muted); font-weight:300; margin-bottom:16px; font-style:italic; }
+  .rcard-author { font-size:0.7rem; letter-spacing:0.1em; text-transform:uppercase; color:var(--gold); }
+
+  /* FOOTER */
+  footer { background:#0D0A07; border-top:1px solid var(--border); padding:60px 8vw 28px; }
+  .footer-top { display:grid; grid-template-columns:2.5fr 1fr 1fr; gap:60px; margin-bottom:48px; }
+  .flogo { font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold-lt); font-weight:600; letter-spacing:0.06em; }
+  .flogo-zh { font-family:'Noto Serif TC',serif; font-size:0.7rem; color:rgba(255,255,255,0.25); letter-spacing:0.25em; margin:4px 0 16px; }
+  .fbrand p { font-size:0.8rem; color:rgba(255,255,255,0.3); line-height:1.8; max-width:280px; }
+  .fcol h4 { font-size:0.65rem; letter-spacing:0.22em; text-transform:uppercase; color:var(--gold); margin-bottom:18px; }
+  .fcol ul { list-style:none; display:flex; flex-direction:column; gap:9px; }
+  .fcol ul li { font-size:0.8rem; color:rgba(255,255,255,0.35); }
+  .fcol ul li a { color:rgba(255,255,255,0.35); text-decoration:none; transition:color 0.3s; }
+  .fcol ul li a:hover { color:var(--gold-lt); }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,0.05); padding-top:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .footer-bottom p { font-size:0.7rem; color:rgba(255,255,255,0.2); letter-spacing:0.06em; }
+  .socials { display:flex; gap:10px; }
+  .soc { width:30px; height:30px; border:1px solid rgba(255,255,255,0.1); display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,0.3); font-size:0.75rem; text-decoration:none; transition:all 0.3s; }
+  .soc:hover { border-color:var(--gold); color:var(--gold); }
+
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  .fi { opacity:0; transform:translateY(22px); transition:opacity 0.7s ease,transform 0.7s ease; }
+  .fi.visible { opacity:1; transform:translateY(0); }
+
+  @media(max-width:900px){
+    nav{padding:0 20px;} .nav-links,.lang-bar{display:none;}
+    section.pad{padding:64px 5vw;}
+    .about-wrap{grid-template-columns:1fr; gap:40px;}
+    .about-img-accent{display:none;}
+    .about-text-col{padding:48px 5vw;}
+    .about-badge{left:0;}
+    .menu-grid{grid-template-columns:1fr 1fr;}
+    .spaces{grid-template-columns:1fr;}
+    .info-wrap{grid-template-columns:1fr;}
+    .info-col{padding:56px 5vw;}
+    .info-col+.info-col{border-left:none;border-top:1px solid rgba(255,255,255,0.05);}
+    .footer-top{grid-template-columns:1fr;gap:36px;}
+    .reviews-grid{grid-template-columns:1fr;}
+    .story-strip{grid-template-columns:1fr 1fr;}
+    .amb-grid{display:flex; flex-direction:column; gap:6px; padding:0 5vw;}
+    .aimg{height:220px;}
+    .aimg.a1{height:280px;}
+    .pull-quote blockquote{font-size:1.1rem;}
+    .hero-float{display:none;}
+    .hero-year-badge{bottom:160px;}
+  }
+  @media(max-width:600px){
+    .hero-title{font-size:2.6rem;}
+    .hero-tagline{font-size:0.85rem;}
+    .hero-pills{gap:6px;}
+    .pill{font-size:0.65rem; padding:4px 9px;}
+    .menu-grid{grid-template-columns:1fr;}
+    .story-strip{grid-template-columns:1fr 1fr;}
+    .hero-year-badge{display:none;}
+    .strip-num{font-size:2rem;}
+    .pull-quote{padding:24px 20px;}
+    .pull-quote blockquote{font-size:1rem; line-height:1.6;}
+    .sec-title{font-size:1.8rem;}
+    .mcard{padding:24px 20px;}
+    .space-card{padding:32px 24px;}
+    nav{height:60px;}
+    .nav-logo-main{font-size:1.2rem;}
+    .btn-reserve{padding:8px 14px; font-size:0.7rem;}
+  }
+
+  /* Image load fallback */
+  img { background: linear-gradient(135deg, #2A3A2A 0%, #1a2010 100%); min-height: 40px; }
+  .hero-bg { background-image:
+    linear-gradient(to bottom, rgba(28,20,16,0.25) 0%, rgba(28,20,16,0.05) 35%, rgba(28,20,16,0.7) 75%, rgba(28,20,16,0.96) 100%),
+    url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&auto=format&fit=crop') center/cover no-repeat,
+    linear-gradient(135deg, #3a2a1a 0%, #1c1410 100%); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div>
+    <div class="nav-logo-main">BACiTALi</div>
+    <div class="nav-logo-sub">小義大利・台中南屯</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">關於我們</a></li>
+    <li><a href="#menu">精選菜單</a></li>
+    <li><a href="#ambience">餐廳環境</a></li>
+    <li><a href="#info">訂位資訊</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="lang-bar">
+      <span class="active">中文</span><span style="opacity:.3">/</span>
+      <span>EN</span><span style="opacity:.3">/</span>
+      <span>日本語</span>
+    </div>
+    <a href="tel:0423864575" class="btn-reserve"> 訂位</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-float">
+    <div class="hero-float-num">4.7★</div>
+    <div class="hero-float-label">Google 評分</div>
+    <div class="hero-float-sub">5,288 則評論</div>
+  </div>
+  <div class="hero-year-badge">
+    <div class="hero-year-num">30<sup style="font-size:0.9rem">+</sup></div>
+    <div class="hero-year-label">年義式傳承</div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">歐風莊園義式餐廳・台中南屯</div>
+    <h1 class="hero-title"><em>Piccola</em><br>Italia</h1>
+    <p class="hero-tagline">在台中，遇見最真實的義大利靈魂</p>
+    <div class="hero-pills">
+      <span class="pill gold">每日自製新鮮手工麵</span>
+      <span class="pill">義大利進口食材</span>
+      <span class="pill">歐風莊園庭院</span>
+      <span class="pill">友善餐廳</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#menu" class="btn-gold">探索菜單</a>
+      <a href="#info" class="btn-ghost">立即訂位</a>
+    </div>
+  </div>
+</div>
+
+<!-- STRIP -->
+<div class="story-strip">
+  <div class="strip-item">
+    <div class="strip-num">30<sup style="font-size:1rem">+</sup></div>
+    <div class="strip-label">年餐飲傳承</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-num">4.7★</div>
+    <div class="strip-label">Google 評分</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-num">5,288</div>
+    <div class="strip-label">則顧客評論</div>
+  </div>
+  <div class="strip-item">
+    <div class="strip-num">100<sup style="font-size:1rem">%</sup></div>
+    <div class="strip-label">每日現做鮮麵</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-wrap" id="about">
+  <div class="about-img-stack fi">
+    <img referrerpolicy="no-referrer" crossorigin="anonymous" class="about-img-main" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=900&auto=format&fit=crop" alt="餐廳內部環境" loading="lazy">
+    <img referrerpolicy="no-referrer" crossorigin="anonymous" class="about-img-accent" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500&auto=format&fit=crop" alt="精緻甜點" loading="lazy">
+    <div class="about-badge">
+      <div class="about-badge-main">PASTA<br>FRESCA</div>
+      <div class="about-badge-sub">每日現做新鮮麵</div>
+    </div>
+  </div>
+  <div class="about-text-col fi" style="transition-delay:0.15s">
+    <div class="sec-label">關於我們</div>
+    <h2 class="sec-title">台中三十年<br>最有溫度的<em>義大利</em></h2>
+    <div class="about-body">
+      <p>BACiTALi 小義大利，從台中四維路的小小創始店出發，歷經三十年的歲月，成長為南屯龍富路上最令人驚嘆的歐風莊園餐廳。紅磚外牆、羅馬風格雕像、落雨松庭院，一走進來，彷彿瞬間抵達義大利南部莊園。</p>
+      <p>室內設計融合現代感與古典奢華——典雅書牆、壁爐、柔和燭光，每個角落都散發著用心布置的溫度。專屬公主包廂更是慶生、求婚、紀念日的絕佳首選。</p>
+    </div>
+    <div class="pasta-callout">
+      <strong>PASTA FRESCA &nbsp;·&nbsp; 每日現做新鮮義大利麵</strong>
+      <p>採用義大利進口專用設備與麥粉、頂級初榨橄欖油、全雞蛋製成。新鮮麵彈牙有嚼勁，義大利人稱之為「Al Dente」——慢嚼慢食，更能品嘗蛋麵特有的香甜。</p>
+    </div>
+    <div class="features-grid">
+      <div class="feat">
+        <div class="feat-num">I.</div>
+        <div class="feat-text"><strong>頂級食材嚴選</strong><span>ALJOMAR 西班牙伊比利豬・桂丁雞</span></div>
+      </div>
+      <div class="feat">
+        <div class="feat-num">II.</div>
+        <div class="feat-text"><strong>有機幼苗嫩葉</strong><span>日本 JGAP 認證・自然農法栽培</span></div>
+      </div>
+      <div class="feat">
+        <div class="feat-num">III.</div>
+        <div class="feat-text"><strong>戶外歐風庭院</strong><span>落雨松庭院・婚宴打卡天堂</span></div>
+      </div>
+      <div class="feat">
+        <div class="feat-num">IV.</div>
+        <div class="feat-text"><strong>壽星專屬驚喜</strong><span>消費滿額折扣・甜點招待</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-wrap pad" id="menu">
+  <div class="menu-header fi">
+    <div>
+      <div class="sec-label" style="color:var(--gold-lt)">精選菜單</div>
+      <h2 class="sec-title light">義大利麵・排餐・甜點<br>每一道都是<em>誠意</em></h2>
+    </div>
+    <div>
+      <p class="menu-intro">全部採用義大利進口麵粉、頂級橄欖油每日現做，單點式菜單讓您自由搭配，主餐約 NT$390～NT$800。</p>
+    </div>
+  </div>
+  <div class="menu-grid">
+    <div class="mcard fi">
+      <div class="mcard-cat">Antipasto ・ 前菜</div>
+      <div class="mcard-it">Tartufo Fries</div>
+      <div class="mcard-zh">松露酥脆薯條佐炸花枝圈</div>
+      <div class="mcard-desc">現炸薯條充滿自製松露醬香氣，外酥內軟；炸花枝圈同樣外酥內嫩，是最受歡迎的分享前菜。</div>
+      <div class="mcard-price">NT$ 290 <small>/ 份</small></div>
+    </div>
+    <div class="mcard fi">
+      <div class="mcard-cat">Pasta ・ 新鮮麵</div>
+      <div class="mcard-it">Capellini alle Vongole</div>
+      <div class="mcard-zh">蛤蠣白酒天使髮絲麵</div>
+      <div class="mcard-tag">熱銷</div>
+      <div class="mcard-desc">現做 Capellini 天使髮絲麵，佐檸檬、白酒與蒜香，蛤蠣鮮甜海味完整釋放，細緻麵條彈牙十足。</div>
+      <div class="mcard-price">NT$ 420 <small>/ 份</small></div>
+    </div>
+    <div class="mcard fi">
+      <div class="mcard-cat">Pasta ・ 新鮮麵</div>
+      <div class="mcard-it">Tagliatelle al Tartufo Nero</div>
+      <div class="mcard-zh">黑鑽松露牛腓力小絲帶新鮮麵</div>
+      <div class="mcard-tag">招牌</div>
+      <div class="mcard-desc">小絲帶新鮮麵佐黑松露醬與嫩煎牛腓力，份量豐盛，松露香氣濃郁，是每桌必點的明星料理。</div>
+      <div class="mcard-price">NT$ 580 <small>/ 份</small></div>
+    </div>
+    <div class="mcard fi">
+      <div class="mcard-cat">Pasta ・ 新鮮麵</div>
+      <div class="mcard-it">Lasagna Bolognese</div>
+      <div class="mcard-zh">招牌手工波隆那肉醬千層麵</div>
+      <div class="mcard-desc">自製手工寬麵皮層層疊疊，包裹濃郁波隆那肉醬，份量十足，是道讓人一試難忘的經典義式料理。</div>
+      <div class="mcard-price">NT$ 460 <small>/ 份</small></div>
+    </div>
+    <div class="mcard fi">
+      <div class="mcard-cat">Secondi ・ 排餐</div>
+      <div class="mcard-it">Pollo alla Griglia</div>
+      <div class="mcard-zh">烙燒桂丁雞排溫沙拉</div>
+      <div class="mcard-desc">微生物標準達生魚片等級的桂丁雞，烙燒後切片鋪上溫熱沙拉基底，帶出焦香與雞肉彈嫩口感，清爽輕食。</div>
+      <div class="mcard-price">NT$ 480 <small>/ 份</small></div>
+    </div>
+    <div class="mcard fi">
+      <div class="mcard-cat">Dolce ・ 甜點</div>
+      <div class="mcard-it">Tiramisù Classico</div>
+      <div class="mcard-zh">經典提拉米蘇</div>
+      <div class="mcard-desc">手工製作，濃縮咖啡浸潤手指餅乾，搭配絲滑馬斯卡彭慕斯，撒上可可粉收尾，甜而不膩。</div>
+      <div class="mcard-price">NT$ 280 <small>/ 份</small></div>
+    </div>
+  </div>
+  <div class="menu-note fi">
+    <p>以上為部分精選，完整菜單含雙人／四人組合餐，請來電或到店洽詢</p>
+    <a href="tel:0423864575" class="btn-gold">電話訂位 04-2386-4575</a>
+  </div>
+</section>
+
+<!-- AMBIENCE -->
+<div class="amb-wrap" id="ambience">
+  <div class="amb-hdr fi">
+    <div class="sec-label">餐廳環境</div>
+    <h2 class="sec-title">走進義大利莊園<br>就在<em>台中南屯</em></h2>
+  </div>
+  <div class="amb-grid">
+    <div class="aimg a1 fi"><img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&auto=format&fit=crop" alt="餐廳主廳" loading="lazy" ></div>
+    <div class="aimg a2 fi"><img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1424847651672-bf20a4b0982b?w=600&auto=format&fit=crop" alt="燭光氛圍" loading="lazy" ></div>
+    <div class="aimg a3 fi"><img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=600&auto=format&fit=crop" alt="精緻料理" loading="lazy" ></div>
+    <div class="aimg a4 fi" style="overflow:hidden">
+      <div class="pull-quote" style="height:100%">
+        <blockquote>"一進門就像走進了義大利莊園，高檔裝潢有現代感，也使用了大量石材，每個細節都令人驚艷。"</blockquote>
+        <cite>— Google 五星顧客評論</cite>
+      </div>
+    </div>
+    <div class="aimg a5 fi"><img referrerpolicy="no-referrer" crossorigin="anonymous" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500&auto=format&fit=crop" alt="甜點" loading="lazy" ></div>
+  </div>
+</div>
+
+<!-- SPACES -->
+<div class="spaces pad" style="padding:80px 8vw">
+  <div style="grid-column:1/-1; margin-bottom:48px" class="fi">
+    <div class="sec-label">用餐空間</div>
+    <h2 class="sec-title">每個角落<br>都是一個<em>故事</em></h2>
+  </div>
+  <div class="space-card fi">
+    <div class="space-num">01</div>
+    <div class="space-name">歐風莊園主廳</div>
+    <div class="space-desc">書牆、壁爐、柔和燈光，融合現代與古典義大利風格。座位舒適寬敞，保有用餐私密感，適合家庭聚會與商務宴請。</div>
+  </div>
+  <div class="space-card fi">
+    <div class="space-num">02</div>
+    <div class="space-name">公主包廂・VIP 宴會廳</div>
+    <div class="space-desc">古典貴族風格的專屬包廂，彷彿置身文藝復興時代。慶生、求婚、周年紀念日的浪漫首選，提供壽星驚喜服務。</div>
+  </div>
+  <div class="space-card fi">
+    <div class="space-num">03</div>
+    <div class="space-name">戶外落雨松庭院</div>
+    <div class="space-desc">整排美麗落雨松搭配歐式庭院造景，天氣晴朗時彷彿置身南義。打卡拍照勝地，也是戶外婚宴的夢幻場地。</div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="reviews-wrap" id="reviews">
+  <div class="fi">
+    <div class="sec-label">顧客評論</div>
+    <h2 class="sec-title">5,288 則真實口碑<br>來自<em>每一位饕客</em></h2>
+  </div>
+  <div class="reviews-grid">
+    <div class="rcard fi">
+      <div class="rcard-stars">★★★★★</div>
+      <div class="rcard-text">「環境真的太漂亮了，像是在義大利莊園用餐。手工新鮮麵的口感和外面賣的乾燥麵完全不同，彈牙有嚼勁，醬汁也很入味。強烈推薦！」</div>
+      <div class="rcard-author">Google 評論・台中在地饕客</div>
+    </div>
+    <div class="rcard fi">
+      <div class="rcard-stars">★★★★★</div>
+      <div class="rcard-text">「帶家人慶生來，壽星不只有甜點招待，還有各種生日道具可以拍照留念，服務非常貼心！黑松露牛腓力麵是必點，份量超大。」</div>
+      <div class="rcard-author">Google 評論・台中家庭聚餐</div>
+    </div>
+    <div class="rcard fi">
+      <div class="rcard-stars">★★★★★</div>
+      <div class="rcard-text">「戶外的落雨松庭院真的很美，拍了很多照片。天使髮絲麵的海鮮料很豐富，蛤蠣、蝦子都很新鮮。下次還會再來！」</div>
+      <div class="rcard-author">Google 評論・情侶約會</div>
+    </div>
+  </div>
+</div>
+
+<!-- INFO -->
+<div class="info-wrap" id="info">
+  <div class="info-col">
+    <div class="sec-label" style="color:var(--gold)">聯絡與訂位</div>
+    <h2 class="sec-title light">前往<em>小義大利</em></h2>
+    <div class="info-list">
+      <div class="irow">
+        <div class="iicon" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-lt);font-style:italic;">Loc</div>
+        <div class="idetail"><strong>地址</strong><p>408 台中市南屯區龍富路三段 589 號</p></div>
+      </div>
+      <div class="irow">
+        <div class="iicon" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-lt);">Hr</div>
+        <div class="idetail">
+          <strong>營業時間</strong>
+          <p>午餐　11:30 ～ 14:00<br>晚餐　17:30 ～ 22:00（供餐至 20:30）<br><span style="font-size:0.78rem;opacity:0.5">每人低消一份主餐 ・ 建議事先訂位</span></p>
+        </div>
+      </div>
+      <div class="irow">
+        <div class="iicon"></div>
+        <div class="idetail"><strong>訂位電話</strong><p><a href="tel:0423864575">04-2386-4575</a></p></div>
+      </div>
+      <div class="irow">
+        <div class="iicon" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-lt);font-style:italic;">Car</div>
+        <div class="idetail"><strong>停車</strong><p>大門右轉有公有免費停車場<br>周邊路邊白線停車格</p></div>
+      </div>
+      <div class="irow">
+        <div class="iicon" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold-lt);font-style:italic;">Bus</div>
+        <div class="idetail"><strong>大眾運輸</strong><p>搭公車 29、30、40、72、290 路<br>至「下新生里」站下車，步行約 5 分鐘</p></div>
+      </div>
+    </div>
+    <div class="badge-row">
+      <span class="abadge g">LGBTQ+ 友善</span>
+      <span class="abadge">堂食</span>
+      <span class="abadge">外帶</span>
+      <span class="abadge">外送</span>
+    </div>
+    <div class="birthday-card">
+      <h4>壽星專屬優惠</h4>
+      <p>當日壽星消費滿 NT$2,000 折 NT$500，並享有甜點招待與生日道具拍照服務。歡迎來電告知，我們為您準備驚喜！</p>
+    </div>
+  </div>
+  <div class="info-col">
+    <div class="sec-label" style="color:var(--gold)">地圖導航</div>
+    <h2 class="sec-title light">台中南屯<br><em>龍富路三段</em></h2>
+    <div class="map-box" onclick="window.open('https://maps.google.com/?q=台中市南屯區龍富路三段589號Bacitali小義大利','_blank')">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold-lt);margin-bottom:12px;font-style:italic;">Maps</div>
+      <p style="font-size:0.88rem;color:rgba(255,255,255,0.55);margin-bottom:6px;">台中市南屯區龍富路三段 589 號</p>
+      <p>點擊開啟 Google Maps 導航</p>
+    </div>
+    <div style="margin-top:28px;padding:24px;border:1px solid var(--border);background:rgba(255,255,255,0.02)">
+      <p style="font-family:'Noto Serif TC',serif;font-size:0.86rem;color:rgba(250,246,238,0.5);line-height:1.85;font-weight:300;">週末與假日座位有限，強烈建議提前來電訂位。如需包廂（VIP 公主廳）或特殊場合佈置，請至少提前 3 天預約。</p>
+      <a href="tel:0423864575" class="btn-gold" style="margin-top:20px;display:inline-block;">☎ 立即致電訂位</a>
+    </div>
+    <div style="margin-top:20px;padding:20px;background:rgba(42,74,53,0.15);border:1px solid rgba(42,74,53,0.4);">
+      <p style="font-size:0.82rem;color:#7FBFA0;line-height:1.7;">· 附近景點：金城武樹（步行 10 分鐘）・彩眷村・南屯老街<br>適合餐後散步，打造完整的台中南屯半日遊</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="fbrand">
+      <div class="flogo">BACiTALi</div>
+      <div class="flogo-zh">小義大利・台中南屯</div>
+      <p>三十年義式料理傳承，從四維路小店到南屯莊園，用每一碗現做新鮮麵，讓台中人感受義大利的飲食靈魂。</p>
+    </div>
+    <div class="fcol">
+      <h4>快速導覽</h4>
+      <ul>
+        <li><a href="#about">關於我們</a></li>
+        <li><a href="#menu">精選菜單</a></li>
+        <li><a href="#ambience">餐廳環境</a></li>
+        <li><a href="#info">訂位資訊</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>聯絡資訊</h4>
+      <ul>
+        <li> 04-2386-4575</li>
+        <li>南屯區龍富路三段 589 號</li>
+        <li>午餐 11:30・晚餐 17:30</li>
+        <li><a href="https://www.facebook.com/Bacitali2019/" target="_blank">Facebook 粉絲頁</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BACiTALi 小義大利・台中市南屯區龍富路三段 589 號・All Rights Reserved</p>
+    <div class="socials">
+      <a href="https://www.facebook.com/Bacitali2019/" class="soc" target="_blank">f</a>
+      <a href="#" class="soc">ig</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Fade-in observer
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+  // Nav on scroll
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.style.background = scrollY > 80 ? 'rgba(13,10,7,0.98)' : 'rgba(28,20,16,0.95)';
+  });
+</script>
+</body>
+</html>
