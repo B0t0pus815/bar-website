@@ -698,6 +698,51 @@
     line-height: 1.6;
   }
 
+  /* ─── CERTIFICATES ─── */
+  .cert-badge {
+    display: flex; gap: 1rem; align-items: flex-start;
+    background: var(--off-white);
+    border: 1px solid var(--gray-light);
+    border-radius: var(--radius);
+    padding: 1.2rem;
+    transition: var(--transition);
+  }
+  .cert-badge:hover {
+    border-color: var(--teal-light);
+    box-shadow: var(--shadow-sm);
+  }
+  .cert-badge-logo {
+    width: 56px; height: 56px; flex-shrink: 0;
+    background: #002d72;
+    color: white;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .cert-badge-title {
+    font-size: 0.95rem; font-weight: 500;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+  }
+  .cert-badge-desc {
+    font-size: 0.83rem;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+  .cert-report-wrap {
+    position: relative;
+  }
+  .cert-report-label {
+    display: flex; justify-content: space-between; align-items: center;
+    background: var(--navy);
+    color: rgba(255,255,255,0.8);
+    padding: 0.8rem 1.2rem;
+    border-radius: 0 0 16px 16px;
+    font-size: 0.85rem;
+    margin-top: -6px;
+  }
+
   /* ─── EQUIPMENT ─── */
   .equip-card {
     background: var(--white);
@@ -1061,6 +1106,10 @@
     .about-img-primary img { height: 220px; }
     .about-list li { font-size: 0.86rem; }
 
+    /* CERTIFICATES */
+    #certificates .container > div:nth-child(2) { grid-template-columns: 1fr; gap: 1.5rem; }
+    .cert-badge-logo { width: 44px; height: 44px; font-size: 0.9rem; }
+
     /* EQUIPMENT — horizontal scroll */
     #equipment .container > div:last-child {
       display: flex; gap: 1rem;
@@ -1128,6 +1177,7 @@
       <li><a href="#advantages">我們的優勢</a></li>
       <li><a href="#about">關於我們</a></li>
       <li><a href="#equipment">專業設備</a></li>
+      <li><a href="#certificates">品質認證</a></li>
       <li><a href="#process">服務流程</a></li>
       <li><a href="#contact" class="nav-cta">立即洽詢</a></li>
     </ul>
@@ -1440,41 +1490,41 @@
 
       <div class="equip-card fade-up">
         <div class="equip-img">
-          <img src="https://qing-jing.tw/wp-content/uploads/2023/06/img08.jpg" alt="專車運送" style="width:100%;height:100%;object-fit:cover;object-position:center 5%;">
+          <img src="equip-truck.png" alt="專車運送" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;">
         </div>
         <div class="equip-body">
           <div class="equip-label">🚛 專車運送</div>
-          <p class="equip-desc">自有專用貨車每日運送，準時方便快速，讓澎湖各地業者都能輕鬆配合。</p>
+          <p class="equip-desc">自有專用貨車每日運送，省時方便快速，讓澎湖各地業者都能輕鬆配合。</p>
         </div>
       </div>
 
       <div class="equip-card fade-up">
         <div class="equip-img">
-          <img src="https://qing-jing.tw/wp-content/uploads/2023/06/img08.jpg" alt="清洗設備" style="width:100%;height:100%;object-fit:cover;object-position:center 35%;">
+          <img src="equip-wash.png" alt="清洗設備" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
         </div>
         <div class="equip-body">
           <div class="equip-label">🫧 商業級清洗設備</div>
-          <p class="equip-desc">採用蒸氣洗烘取代柔軟精，維持布草柔軟新度，同時有效高溫殺菌消毒。</p>
+          <p class="equip-desc">使用蒸氣洗烘取代柔軟精，維持布品柔軟度，同時有效高溫殺菌消毒。</p>
         </div>
       </div>
 
       <div class="equip-card fade-up">
         <div class="equip-img">
-          <img src="https://qing-jing.tw/wp-content/uploads/2023/06/img08.jpg" alt="熨燙設備" style="width:100%;height:100%;object-fit:cover;object-position:center 62%;">
+          <img src="equip-iron.png" alt="熨燙設備" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
         </div>
         <div class="equip-body">
           <div class="equip-label">♨️ 大型熨燙設備</div>
-          <p class="equip-desc">商用滾筒熨燙機可減少刷帶損耗並達到最優質熨燙效果，床單平整無皺。</p>
+          <p class="equip-desc">使用專用機器可減少鬆緊帶被燙損壞問題，床單平整無皺，呈現五星質感。</p>
         </div>
       </div>
 
       <div class="equip-card fade-up">
         <div class="equip-img">
-          <img src="https://qing-jing.tw/wp-content/uploads/2023/06/img08.jpg" alt="毛巾摺疊機" style="width:100%;height:100%;object-fit:cover;object-position:center 88%;">
+          <img src="equip-fold.png" alt="浴巾摺疊機" style="width:100%;height:100%;object-fit:cover;object-position:center 50%;">
         </div>
         <div class="equip-body">
-          <div class="equip-label">📐 法式摺疊機</div>
-          <p class="equip-desc">法式折疊用超刀和吹氣可以讓毛巾摺疊更蓬亮，呈現五星級飯店的整潔質感。</p>
+          <div class="equip-label">📐 法式浴巾摺疊機</div>
+          <p class="equip-desc">法式折疊用鋁刀和吹氣可以讓毛巾摺疊更漂亮，呈現五星級飯店的整潔質感。</p>
         </div>
       </div>
 
@@ -1482,7 +1532,50 @@
   </div>
 </section>
 
-<!-- PROCESS -->
+<!-- CERTIFICATES -->
+<section id="certificates" style="background: var(--white);">
+  <div class="container">
+    <div class="section-header center">
+      <span class="section-tag">品質認證</span>
+      <h2 class="section-title">SGS & Intertek 國際認證把關</h2>
+      <p class="section-subtitle">我們使用的洗劑通過 SGS 及 Intertek 國際第三方檢驗機構檢測，砷、鉛、壬基苯酚等有害物質全數未檢出，安全有保障，讓您的旅客住得安心。</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1.6fr; gap: 3rem; align-items: center;">
+      <div style="display: flex; flex-direction: column; gap: 1.2rem;">
+        <div class="cert-badge">
+          <div class="cert-badge-logo">SGS</div>
+          <div>
+            <div class="cert-badge-title">SGS 台灣檢驗科技</div>
+            <p class="cert-badge-desc">全方位安全衛生檢驗，重金屬、有害物質全數符合標準</p>
+          </div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-badge-logo" style="background: #e8131a; font-size: 0.85rem;">Intertek</div>
+          <div>
+            <div class="cert-badge-title">Intertek 全國公證</div>
+            <p class="cert-badge-desc">砷含量、鉛含量、壬基苯酚（NP/NPEO）全數未檢出</p>
+          </div>
+        </div>
+        <div class="cert-badge">
+          <div class="cert-badge-logo" style="background: var(--teal); font-size: 1.5rem;">✓</div>
+          <div>
+            <div class="cert-badge-title">食品級安全標準</div>
+            <p class="cert-badge-desc">依據衛生福利部食品安全衛生管理法規定進行檢驗，全數合格</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cert-report-wrap fade-up">
+        <img src="cert-reports.png" alt="洗劑檢驗報告書 SGS Intertek" style="width:100%; border-radius: 16px; box-shadow: var(--shadow-md); display: block;">
+        <div class="cert-report-label">
+          <span>📋 洗劑檢驗報告書</span>
+          <span style="color: var(--teal); font-weight: 500;">SGS + Intertek 雙重認證</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="process">
   <div class="container">
     <div class="section-header center">
