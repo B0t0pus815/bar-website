@@ -1100,6 +1100,12 @@
     .service-card {
       min-width: 75vw; max-width: 280px;
       flex-shrink: 0; scroll-snap-align: start;
+      transform: none !important;
+      transition: box-shadow 0.3s ease !important;
+    }
+    .service-card:hover {
+      transform: none !important;
+      box-shadow: var(--shadow-md);
     }
     .service-card-img { height: 150px; }
     .service-card-body { padding: 1rem; }
@@ -1694,10 +1700,10 @@
       <div class="footer-title">快速導覽</div>
       <ul class="footer-links">
         <li><a href="#problems">您的困擾</a></li>
-        <li><a href="#why-us">為何選擇我們</a></li>
         <li><a href="#services">服務項目</a></li>
         <li><a href="#advantages">我們的優勢</a></li>
-        <li><a href="#about">關於我們</a></li>
+        <li><a href="#equipment">專業設備</a></li>
+        <li><a href="#certificates">品質認證</a></li>
         <li><a href="#process">服務流程</a></li>
       </ul>
     </div>
@@ -1706,7 +1712,7 @@
       <ul class="footer-links">
         <li><a href="tel:06-9276421">📞 06-9276421</a></li>
         <li><a href="tel:0905-628-352">📱 0905-628-352</a></li>
-        <li><a href="/cdn-cgi/l/email-protection#5a293f282c33393f1a2b33343d773033343d742e2d">✉️ <span class="__cf_email__" data-cfemail="33405641455a505673425a5d541e595a5d541d4744">[email&#160;protected]</span></a></li>
+        <li><a href="mailto:service@qing-jing.tw">✉️ service@qing-jing.tw</a></li>
         <li><a href="#contact">📍 澎湖縣白沙鄉赤崁村186-1號</a></li>
         <li><a href="#contact">🕐 週一至週六 08:00–18:00</a></li>
       </ul>
