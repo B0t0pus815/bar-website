@@ -1759,9 +1759,18 @@
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
 
     fadeEls.forEach(el => observer.observe(el));
+
+    // 備用：頁面完全載入後強制顯示所有未觸發的元素
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.querySelectorAll('.fade-up.animate:not(.visible)').forEach(el => {
+          el.classList.add('visible');
+        });
+      }, 800);
+    });
   }
 
   function handleSubmit() {
